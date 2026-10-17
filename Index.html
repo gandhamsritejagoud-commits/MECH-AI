@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="MECH AI — weather-aware industrial monitoring and predictive maintenance demo.">
+  <title>MECH AI | Intelligent Machine Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="MECH AI home"><span class="brand-mark">M</span><span>MECH<span class="brand-ai">AI</span><small>EDGE INTELLIGENCE</small></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav id="nav">
+      <a class="active" href="#home">Home</a><a href="#dashboard">Dashboard</a><a href="#insights">AI Insights</a><a href="#recovery">Data Recovery</a><a href="#about">About</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">◐ <span>Theme</span></button>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> WEATHER-AWARE INDUSTRIAL INTELLIGENCE</div>
+        <h1>Machines never<br>go <span class="gradient-text">unnoticed.</span></h1>
+        <p class="hero-sub">A smarter way to monitor machine health, understand environmental context, and recover sensor-data gaps at the edge.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#dashboard">Explore dashboard <span>↗</span></a><a class="btn btn-ghost" href="#how-it-works">How it works <span>↓</span></a></div>
+        <div class="hero-stats"><div><strong>05</strong><span>Sensor inputs</span></div><div><strong>02</strong><span>Edge tiers</span></div><div><strong>24/7</strong><span>Monitoring concept</span></div></div>
+      </div>
+      <div class="hero-visual">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="machine-core"><div class="core-ring"></div><div class="core-icon">⚙</div><span class="core-label">EDGE AI CORE</span></div>
+        <div class="float-card card-vibration"><span class="mini-icon">〰</span><div><small>VIBRATION</small><strong>0.42 <em>g</em></strong><span class="status status-ok">● Stable</span></div></div>
+        <div class="float-card card-weather"><span class="mini-icon">☁</span><div><small>WEATHER CONTEXT</small><strong>Rain monitored</strong><span class="muted">Context fusion active</span></div></div>
+        <div class="visual-caption"><span class="pulse"></span> LOCAL PROCESSING · CLOUD OPTIONAL</div>
+      </div>
+    </section>
+
+    <section class="section section-tight" id="how-it-works">
+      <div class="section-heading"><div><div class="eyebrow">THE SYSTEM</div><h2>From sensor signal to <span class="gradient-text">smart action.</span></h2></div><p>Local sensing and edge intelligence help preserve machine-monitoring context when connectivity is interrupted.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><div class="step-icon">⌁</div><h3>Sense</h3><p>Capture vibration, temperature, humidity, rainfall and light intensity.</p></article>
+        <article class="step-card"><span class="step-number">02</span><div class="step-icon">⇄</div><h3>Connect</h3><p>ESP32 sends compact sensor messages over local Wi-Fi using MQTT.</p></article>
+        <article class="step-card"><span class="step-number">03</span><div class="step-icon">◈</div><h3>Analyze</h3><p>Raspberry Pi and Python combine environmental context with machine data.</p></article>
+        <article class="step-card"><span class="step-number">04</span><div class="step-icon">↗</div><h3>Act</h3><p>Flag unusual patterns and label estimated readings for maintenance review.</p></article>
+      </div>
+    </section>
+
+    <section class="section dashboard-section" id="dashboard">
+      <div class="section-heading"><div><div class="eyebrow">LIVE DEMO DASHBOARD</div><h2>Machine <span class="gradient-text">overview.</span></h2></div><div class="demo-badge"><span class="pulse"></span> SIMULATED DEMO DATA</div></div>
+      <div class="dashboard-toolbar"><div><strong>Machine Alpha-01</strong><span class="muted"> · Prototype asset</span></div><div class="toolbar-actions"><select id="rangeSelect" aria-label="Chart time range"><option value="live">Recent samples</option><option value="day">24-hour view</option></select><button class="btn-small" id="refreshBtn">↻ Refresh demo</button></div></div>
+      <div class="metric-grid">
+        <article class="metric-card"><div class="metric-top"><span>Vibration</span><span class="metric-icon">〰</span></div><div class="metric-value"><strong id="vibrationValue">0.42</strong><small>g</small></div><div class="metric-foot"><span class="status status-ok" id="vibrationStatus">● Stable</span><span>MPU6050</span></div><div class="sparkline"></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Temperature</span><span class="metric-icon">♨</span></div><div class="metric-value"><strong id="temperatureValue">28.4</strong><small>°C</small></div><div class="metric-foot"><span class="status status-ok">● Normal</span><span>DHT11</span></div><div class="progress"><i style="width:48%"></i></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Humidity</span><span class="metric-icon">◌</span></div><div class="metric-value"><strong id="humidityValue">64</strong><small>%</small></div><div class="metric-foot"><span class="status status-ok">● Normal</span><span>DHT11</span></div><div class="progress"><i style="width:64%"></i></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Rain sensor</span><span class="metric-icon">☂</span></div><div class="metric-value"><strong id="rainValue">18</strong><small>/100</small></div><div class="metric-foot"><span class="status status-info">● Monitoring</span><span>Analog input</span></div><div class="progress"><i style="width:18%"></i></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Light intensity</span><span class="metric-icon">☼</span></div><div class="metric-value"><strong id="lightValue">72</strong><small>/100</small></div><div class="metric-foot"><span class="status status-info">● Monitoring</span><span>LDR</span></div><div class="progress"><i style="width:72%"></i></div></article>
+        <article class="metric-card connection-card"><div class="metric-top"><span>Gateway connection</span><span class="metric-icon">⌁</span></div><div class="metric-value"><strong>Online</strong></div><div class="metric-foot"><span class="status status-ok">● Local demo</span><span>Raspberry Pi concept</span></div><div class="connection-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+      </div>
+      <div class="charts-grid">
+        <article class="panel chart-panel"><div class="panel-heading"><div><h3>Vibration timeline</h3><p>Observed demo readings · arbitrary sample sequence</p></div><span class="chart-tag">MPU6050</span></div><div class="chart-wrap"><canvas id="vibrationChart" aria-label="Vibration line chart"></canvas></div></article>
+        <article class="panel chart-panel"><div class="panel-heading"><div><h3>Environmental context</h3><p>Temperature and humidity</p></div><span class="chart-tag">DHT11</span></div><div class="chart-wrap"><canvas id="environmentChart" aria-label="Environmental chart"></canvas></div></article>
+      </div>
+      <p class="fine-print">Demo only: these values are randomly generated in your browser. They are not real sensor readings, medical/safety advice, or validated fault predictions.</p>
+    </section>
+
+    <section class="section insights-section" id="insights">
+      <div class="section-heading"><div><div class="eyebrow">CONTEXTUAL ANALYTICS</div><h2>More context. <span class="gradient-text">Better review.</span></h2></div><p>Illustrative indicators show how the future connected system could present findings.</p></div>
+      <div class="insight-grid">
+        <article class="panel insight-main"><div class="panel-heading"><div><span class="eyebrow">AI ANALYSIS · DEMO</span><h3>Machine health snapshot</h3></div><span class="health-ring">86<small>/100</small></span></div><div class="health-bar"><i></i></div><div class="health-labels"><span>Prototype score</span><span>Illustrative only</span></div><div class="insight-message"><span class="message-icon">✓</span><div><strong>No configured threshold exceeded</strong><p>This sample is within the demo's example limits. A real score requires validated data and a tested model.</p></div></div></article>
+        <article class="panel"><div class="panel-heading"><div><h3>Context signals</h3><p>Example readings used in interpretation</p></div></div><div class="context-list"><div><span class="context-icon">☁</span><span>Weather conditions</span><strong>Tracked</strong></div><div><span class="context-icon">〰</span><span>Vibration baseline</span><strong>Compared</strong></div><div><span class="context-icon">◌</span><span>Telemetry gaps</span><strong>Checked</strong></div><div><span class="context-icon">⌁</span><span>Local gateway</span><strong>Demo online</strong></div></div></article>
+      </div>
+    </section>
+
+    <section class="section recovery-section" id="recovery">
+      <div class="section-heading"><div><div class="eyebrow">SIGNAL CONTINUITY</div><h2>Recover the timeline, <span class="gradient-text">label every estimate.</span></h2></div><p>Missing-data recovery should make gaps visible—not pretend estimated values are direct measurements.</p></div>
+      <div class="recovery-grid">
+        <article class="panel recovery-copy"><span class="large-icon">⟳</span><h3>Self-healing data concept</h3><p>When timestamps or MQTT messages are missing, the edge gateway can use buffered history and a validated estimation method to reconstruct a continuous analysis timeline.</p><ul class="check-list"><li>Detect missing timestamps</li><li>Use recent history and environmental context</li><li>Label imputed values clearly</li><li>Continue local analysis when offline</li></ul></article>
+        <article class="panel recovery-chart"><div class="panel-heading"><div><h3>Example data gap</h3><p>Illustration of observed vs estimated readings</p></div><span class="chart-tag">ILLUSTRATION</span></div><div class="chart-wrap"><canvas id="recoveryChart" aria-label="Observed and estimated readings chart"></canvas></div><div class="legend-custom"><span><i></i> Observed data</span><span><i></i> Estimated data</span></div></article>
+      </div>
+    </section>
+
+    <section class="section architecture-section" id="about">
+      <div class="section-heading"><div><div class="eyebrow">SYSTEM ARCHITECTURE</div><h2>Built for the <span class="gradient-text">edge.</span></h2></div><p>Two tiers separate field sensing from local data processing.</p></div>
+      <div class="architecture">
+        <div class="arch-node"><span class="arch-kicker">TIER 01 · FIELD NODE</span><div class="arch-symbol">▦</div><h3>ESP32 + Sensors</h3><p>MPU6050 · DHT11 · Rain sensor · LDR</p><span class="arch-tag">Sensor collection</span></div>
+        <div class="arch-connector"><span>JSON / MQTT</span><div>⟶</div></div>
+        <div class="arch-node arch-node-featured"><span class="arch-kicker">TIER 02 · EDGE GATEWAY</span><div class="arch-symbol">◈</div><h3>Raspberry Pi</h3><p>Mosquitto · Python · Context fusion · Anomaly logic</p><span class="arch-tag">Local intelligence</span></div>
+        <div class="arch-connector"><span>ALERTS</span><div>⟶</div></div>
+        <div class="arch-node"><span class="arch-kicker">USER INTERFACE</span><div class="arch-symbol">▤</div><h3>MECH AI Dashboard</h3><p>Charts · Status · Data recovery · Reports</p><span class="arch-tag">Maintenance review</span></div>
+      </div>
+    </section>
+
+    <section class="cta-section section"><div><div class="eyebrow">MECH AI · NEW ERA</div><h2>Monitor the asset.<br><span class="gradient-text">Preserve the signal.</span></h2><p>A prototype concept for weather-aware, edge-based predictive maintenance.</p></div><a class="btn btn-primary" href="#dashboard">View demo dashboard ↑</a></section>
+  </main>
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">M</span><span>MECH<span class="brand-ai">AI</span><small>EDGE INTELLIGENCE</small></span></a><p>© <span id="year"></span> MECH AI · Project prototype</p><a href="#home">Back to top ↑</a></footer>
+  <script src="script.js"></script>
+</body>
+                                                                                                                                                                                                  </html>
